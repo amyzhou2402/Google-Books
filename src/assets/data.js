@@ -1,15 +1,33 @@
-export const getBooks = async (searchTerm = "") => {
-    if (searchTerm == "") {
+import defaultImg from "../assets/default-book.jpg";
+const errorImg = defaultImg;
+
+export const getBooks = async (currentQuery, callback) => {
+    if (currentQuery == "") {
         return;
     } else {
         try {
             const url =
-                "https://www.googleapis.com/books/v1/volumes?q=" + searchTerm;
+                "https://www.googleapis.com/books/v1/volumes?q=" + currentQuery;
             let response = await fetch(url);
             let json = await response.json();
-            let items = await json.items[0];
-            return items;
-            // items is an array with object inside.
+
+            let bookInfo = json.items.map((book) => book.volumeInfo);
+            // bookInfo is an array with object inside.
+            console.log(bookInfo);
+            let results = bookInfo.map((book) => {
+                const result = {
+                    title: book.title,
+                    authors: book.authors,
+                    description: book.description,
+                    image:
+                        book.imageLinks === undefined
+                            ? `${errorImg}`
+                            : `${book.imageLinks.thumbnail}`,
+                    preview: book.previewLink,
+                };
+                return result;
+            });
+            callback(results);
         } catch (err) {
             console.log("fetch failed", err);
         }

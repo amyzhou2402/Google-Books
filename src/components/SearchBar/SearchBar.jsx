@@ -1,26 +1,28 @@
 import { useState } from "react";
 import Button from "../Button";
 import styles from "./SearchBar.module.scss";
+import { getBooks } from "../../assets/data";
 
-const SearchBar = (searchValuesObject) => {
-    //
+const SearchBar = (resultsCallback) => {
     const [myCurrentSearch, setMyCurrentSearch] = useState("");
+    const handleChange = (event) => {
+        setMyCurrentSearch(event.target.value);
+    };
 
     return (
         <div className={styles.searchbar}>
             <input
                 type="text"
                 value={myCurrentSearch}
-                placeholder="search"
-                onInput={(event) => {
-                    setMyCurrentSearch(event.target.value);
-                }}
+                placeholder="Enter Text Here..."
+                onInput={handleChange}
             />
             <Button
                 label="search"
                 clickHandler={() => {
-                    searchValuesObject.setSearchTerm(myCurrentSearch);
-                    console.log(searchValuesObject);
+                    getBooks(myCurrentSearch, resultsCallback);
+                    // searchValuesObject.setSearchTerm(myCurrentSearch);
+                    // console.log(searchValuesObject);
                     setMyCurrentSearch("");
                 }}
             ></Button>

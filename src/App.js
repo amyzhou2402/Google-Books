@@ -3,7 +3,6 @@ import SearchBar from "./components/SearchBar";
 import BookContainer from "./containers/BookContainer";
 import HeaderContainer from "./containers/HeaderContainer";
 import { useState } from "react";
-import { data, getBooks } from "./assets/data";
 
 function App() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -19,7 +18,7 @@ function App() {
     return (
         <div className="App">
             <HeaderContainer></HeaderContainer>
-            <SearchBar searchValues={searchValuesObject}></SearchBar>
+            <SearchBar resultsCallback={setSearchTerm}></SearchBar>
             {BookContainer}
         </div>
     );
