@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+# Project Overview
+Google Books is a project allowing users to search for books from Google's Google Books API
+<br>
+MVP should include:
+- Header section introducing the page
+- Form containing a text input and a submit / search button
+- A grid of books containing image, author, title and description
+
+Considerations: 
+- The grid should be responsive on different screen sizes
+- Using async / await for request code, instead of .then
+- Styling using BEM, and each block should have its own SCSS file
+
+# Reflection
+- Things I'd differently next time
+- What? Why? How?
+- Future goals / changes
+- What did you struggle with?
+- What? Why? How?
+
+# Setup
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
